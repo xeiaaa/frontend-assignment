@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { i18n } from '@lingui/core'
 
-interface ICurrenciesState {
-  nep: string | number | readonly string[] | undefined,
-  busd: string | number | readonly string[] | undefined
+export interface ICurrenciesState {
+  nep: string | number | string[] | undefined,
+  busd: string | number | string[] | undefined
 }
 
 export enum Currency {
@@ -26,6 +26,7 @@ const useConverter = () => {
     return result
   }
   
+  // on change handler for number input
   const handleChange = (currency: Currency) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const str = e.target.value
 
@@ -34,6 +35,7 @@ const useConverter = () => {
       otherCurrency = Currency.busd
     }
 
+    // return when typing more than 3 decimal places
     if (str.includes('.') && str.split('.')[1].length >= 3) {
       return
     }
@@ -41,6 +43,7 @@ const useConverter = () => {
     setCurrencies(currencies => ({ ...currencies, [currency]: str }))
 
     if (!str) {
+      // null the value of the other currency input instead of displaying 0.00
       setCurrencies(currencies => ({
         ...currencies,
         [otherCurrency]: ''
