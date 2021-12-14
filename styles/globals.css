@@ -14,3 +14,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#__next {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.absolute-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
